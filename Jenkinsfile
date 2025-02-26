@@ -13,11 +13,12 @@ pipeline {
         }
 
         stage('Build Wheel') {
-            steps {
-                sh 'ls -la'  // Debugging: Check if pyproject.toml exists
-                sh 'python3 -m build --wheel'
-            }
-        }
+    steps {
+        sh 'ls -la'  // Debugging: Check current directory
+        sh 'python3 -m build --wheel --outdir dist'
+    }
+}
+
 
         stage('Test') {
             steps {
