@@ -9,3 +9,7 @@ dependencies = []
 
 [project.scripts]
 myapp = "my_python_project.main:main"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/my_python_project"]  # Adjust this based on your project structure
