@@ -16,11 +16,9 @@ pipeline {
         }
        
         stage('Build Wheel') {
-            steps {
-                sh 'pip install build'
-                sh 'python -m build --wheel'
-            }
+            sh 'python3 -m build --wheel'
         }
+
        
         stage('Test') {
             steps {
