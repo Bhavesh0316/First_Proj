@@ -14,12 +14,10 @@ pipeline {
 
         stage('Build Wheel') {
             steps {
-                dir('/var/lib/jenkins/workspace/dummypython') {
-            sh 'python3 -m build --wheel'
+                sh 'ls -la'  // Debugging: Check if pyproject.toml exists
+                sh 'python3 -m build --wheel'
+            }
         }
-    }
-}
-
 
         stage('Test') {
             steps {
