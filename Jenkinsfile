@@ -32,10 +32,11 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-    dir('/var/lib/jenkins/workspace/dummypython') {  // Change directory
+    dir('/var/lib/jenkins/workspace/dummypython') {  // Ensure the correct directory
         sh 'docker build -t my-python-app:latest .'
     }
 }
+
 
 
         stage('Deploy') {
