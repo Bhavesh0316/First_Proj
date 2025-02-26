@@ -9,8 +9,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // For local Git repo (adjust path if needed)
-                dir('/home/user/my_python_project') {
-                    git branch: 'main', url: 'file:///home/user/my_python_project'
+                dir('/home/bhavesh/Linux_New/my_python_project') {
+                    git branch: 'main', url: 'file:///home/bhavesh/Linux_New/my_python_project'
                 }
             }
         }
