@@ -14,9 +14,12 @@ pipeline {
 
         stage('Build Wheel') {
             steps {
-                sh 'cd /var/lib/jenkins/workspace/dummypython && python3 -m build --wheel'
-            }
+                dir('/var/lib/jenkins/workspace/dummypython') {
+            sh 'python3 -m build --wheel'
         }
+    }
+}
+
 
         stage('Test') {
             steps {
