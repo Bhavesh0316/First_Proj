@@ -14,10 +14,14 @@ pipeline {
 
         stage('Build Wheel') {
     steps {
-        sh 'ls -la'  // Debugging: Check current directory
-        sh 'python3 -m build --wheel --outdir dist'
+        dir('/var/lib/jenkins/workspace/dummypython') {  // Correct directory
+            sh 'ls -la'  // Debugging: List files
+            sh 'pwd'     // Debugging: Show current directory
+            sh 'python3 -m build --wheel --outdir dist'
+        }
     }
 }
+
 
 
         stage('Test') {
