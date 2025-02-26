@@ -1,47 +1,45 @@
 pipeline {
     agent any
-   
+
     environment {
         DOCKER_IMAGE = 'my-python-project:latest'
     }
-   
+
     stages {
         stage('Checkout') {
             steps {
-                // For local Git repo (adjust path if needed)
-                dir('/home/bhavesh/Linux_New/my_python_project') {
-                    git branch: 'main', url: 'file:///home/bhavesh/Linux_New/my_python_project'
-                }
+                git branch: 'main', url: 'https://github.com/Bhavesh0316/my_python_project.git'
             }
         }
-       
+
         stage('Build Wheel') {
-            sh 'python3 -m build --wheel'
+            steps {
+                sh 'python3 -m build --wheel'
+            }
         }
 
-       
         stage('Test') {
             steps {
                 sh 'pip install pytest'
                 sh 'pytest tests/'
             }
         }
-       
+
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t  .'
+                sh 'docker build -t my-python-project:latest .'
             }
         }
-       
+
         stage('Deploy') {
             steps {
                 sh 'docker stop my-python-container || true'
                 sh 'docker rm my-python-container || true'
-                sh 'docker run -d --name my-python-container '
+                sh 'docker run -d --name my-python-container my-python-project:latest'
             }
         }
     }
-   
+
     post {
         success {
             echo 'Pipeline completed successfully!'
