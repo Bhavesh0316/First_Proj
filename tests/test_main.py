@@ -11,5 +11,5 @@ class TestMain(unittest.TestCase):
         sys.stdout = sys._stdout_
         self.assertEqual(captured_output.getvalue().strip(), "Hello from Jenkins CI/CD Pipeline!")
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     unittest.main()
